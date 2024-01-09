@@ -4,17 +4,26 @@
   
 }
 
+
+
+
+#countryTitle
+{
+    color: white;
+}
+
+
 .list{
  
-    background-color: red;
+    background-color: rgb(52, 9, 9);
     border: 2px solid black;
-    display: flex;
+    /* display: flex;
     align-items: center;
     flex-wrap: wrap;
-    justify-content: center;
-    width: 60%;
-    margin: auto;
-    height: 400px;
+    justify-content: center; */
+    
+    
+    height: 100%;
     border-radius: 100px;
 }
 
