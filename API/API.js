@@ -23,7 +23,7 @@ document.body.appendChild(list);
 
 
 
-function Hearder()
+//function Hearder()
 
 
 let country = document.createElement("h1"); 
