@@ -15,28 +15,29 @@
 
 
 //
+
+
+let SelectedCountry;
+let CreateList;
+let CreateOptions;
+let middleSection = document.getElementById("middleSection");
+let Top  = document.getElementById("headBar");
 let list = document.createElement("div");
-list.setAttribute("class","list");
-document.body.appendChild(list); 
+Top.appendChild(list);
+
+let country = document.createElement("h1"); 
 
 
-
-
-
+Hearder();
 
 function Hearder()
 {
-    let country = document.createElement("h1"); 
-    country.setAttribute("id","countryTitle");
-    list.appendChild(country);
+    list.setAttribute("class","list");
+    
+    country.setAttribute("class","Item");
+    middleSection.appendChild(country);
     country.innerHTML = "Country";
 }
-
-
-
-
-
-
 
 
 
@@ -150,7 +151,6 @@ let countries = [
     "Iraq",
     "Ireland",
     "Isle of Man",
-    "Israel",
     "Italy",
     "Jamaica",
     "Japan",
@@ -290,9 +290,7 @@ let countries = [
     "Zimbabwe"
 ];
 
- let SelectedCountry;
-let CreateList;
-let CreateOptions;
+
 
 
 
@@ -301,12 +299,13 @@ CreateItemsList(countries);
 function CreateItemsList(countries) {
     CreateList = document.createElement("select");
     list.appendChild(CreateList);
-
+    CreateList.setAttribute("id","SelectedCountry");
     for (let i = 0; i < countries.length; i++) {
         CreateOptions = document.createElement("option");
         CreateOptions.value = countries[i];
         CreateOptions.innerHTML = countries[i];
         CreateList.appendChild(CreateOptions);
+       
     }
     CreateList.addEventListener("change", function () {
         choose(this.value);
@@ -326,50 +325,120 @@ function choose(item) {
     country.innerHTML=SelectedCountry;
     
    
-    
+    let key = "92a0d89eb3f6b36376f9240c08922735";
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${SelectedCountry}&appid=${key}`)
+        .then(response => response.json())
+       .then (data => {Main(data)});
 
-    console.log(SelectedCountry);
-   let key = "92a0d89eb3f6b36376f9240c08922735";
-fetch(`https://api.openweathermap.org/data/2.5/weather?q=${SelectedCountry}&appid=${key}`)
-    .then(response => response.json())
-   .then (data => {Main(data)});
+    //console.log(SelectedCountry);
+
 }
-let bring = document.getElementById("temp");
+
+
+
+
 
   
-
 
 
 function Main(obj)
 {
-  
+   
+   // console.log(obj);
   // Filter item to get just wind and waether
-  weather(obj.weather);
-   Wind(obj.wind); 
+  weather(obj.weather,obj.main.temp);
+  Wind(obj.wind.speed,obj.main.humidity); 
+ 
+}
 
+
+
+
+
+
+let WindBox = document.getElementById("WindSpeedSmallBox");
+let humidityBox = document.getElementById("humiditySmallBox");
+let WindGrad = document.createElement("h3");
+let hum =  document.createElement("h3");
+
+
+
+// name of them 
+let WindName = document.createElement("h3");
+let humName=  document.createElement("h3");
+let iconImg = document.createElement("img");
+let TempGrader = document.createElement("h3");
+
+
+
+defultInf();
+
+function defultInf()
+{
+iconImg.setAttribute("alt","404");
+TempGrader.innerHTML ="** &deg;C";
+middleSection.appendChild(iconImg);
+middleSection.appendChild(TempGrader);
+
+  WindName.innerHTML = "WindSpeed";
+  humName.innerHTML = "Humidity";
+ WindBox.appendChild(hum);
+  humidityBox.appendChild(WindGrad);
+  WindBox.appendChild(WindName);
+  humidityBox.appendChild(humName);
+  TempGrader.setAttribute("class","Item");
+  TempGrader.setAttribute("id","TempGrader");     
+  iconImg.setAttribute("class","Item");
+  iconImg.setAttribute("id","iconImg");
+ 
 
 }
 
 
-function MakeList()
+
+
+
+function Wind(WindSpeed,humidity)
 {
-  
+  WindGrad.innerHTML = `${WindSpeed} km/h`;
+  hum.innerHTML =`${humidity} %`;
+
+ 
 }
 
 
-console.log(list);
 
 
 
 
-function Wind(items)
+
+
+
+
+
+
+
+
+
+
+
+
+function weather(items,Temp)
 {
-    //console.log(items);
-}
+   
+    let temperatureCelsius = Temp - 273.15;
 
-function weather(items)
-{
-    //console.log(items);
+   
+ 
+    items.forEach((value) => {
+        //console.log(value);
+       
+        iconImg.setAttribute("src", `https://openweathermap.org/img/w/${value.icon}.png`);
+     
+      
+    });
+    TempGrader.innerHTML = `${Math.floor(temperatureCelsius)} &deg;C`;
+    
 }
 
 

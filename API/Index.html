@@ -5,10 +5,19 @@
             APi
         </title>
         <link rel="stylesheet" href="API.css">
+        <script src="../bootstrap-4.0.0-dist/css/bootstrap.min.css"></script>
     </head>
     <body>
-        
-        <h1 id="Väder"></h1>
+        <div id="VäderList">
+        <div id="headBar">
+        </div>  
+        <div id="middleSection">
+        </div>
+        <div id="BottomSection">
+        <div id="WindBox"><img src="Icons/WindSpeed.png" width="50px" height="50px" alt="WindSpeedIcon"> <div id="WindSpeedSmallBox"></div></div>
+        <div id="humidityBox"><img src="Icons/humidity.png" width="50px" height="50px" alt="humidityIcon"> <div id="humiditySmallBox"></div></div>
+        </div>
+        </div>
         <!-- <label for="country">Country</label><span style="color: red !important; display: inline; float: none;">*</span>      
        
             <select id="country" name="country" class="form-control" onchange="choose(this.value)">
@@ -259,6 +268,8 @@
             </select>
         
             -->
-        <script src="API.js"></script>
+    
+     
+     <script src="API.js"></script>
     </body>
 </html>
