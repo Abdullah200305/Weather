@@ -24,12 +24,15 @@ document.body.appendChild(list);
 
 
 function Hearder()
+{
+    let country = document.createElement("h1"); 
+    country.setAttribute("id","countryTitle");
+    list.appendChild(country);
+    country.innerHTML = "Country";
+}
 
 
-let country = document.createElement("h1"); 
-country.setAttribute("id","countryTitle");
-list.appendChild(country);
-country.innerHTML = "Country";
+
 
 
 
