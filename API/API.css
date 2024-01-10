@@ -8,7 +8,7 @@ body
 {
     background-color: rgb(64, 64, 64);
     box-shadow: 20px;
-    margin: 40px;
+    margin: 20px;
 }
 
 #headBar
@@ -32,7 +32,8 @@ body
 /* this is include all items */
 .Item
 {
-    margin: 30px;
+    
+    margin: 15px;
 }
 #middleSection
 {
@@ -42,7 +43,7 @@ body
   justify-content:space-around;
   align-items: center;
     width: 400px;
-    height: 600px;
+    height: 50%;
 }
 
 /* This is grader number */ 
